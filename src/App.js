@@ -1,21 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as EmployeeActions from './actions/employeeActions';
 import './App.css';
+import Header from './common/Header';
+import Dashboard from './Dashboard/Dashboard';
+import Employees from './Employees/Employees';
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.actions.getEmployees();
+  }
+
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className='container-fluid'>
+        <Header />
+        <main>
+          <Route path='/' exact render={(routeProps) => <Dashboard employees={this.props.employees} {...routeProps} />} />
+          <Route path='/employees' render={(routeProps) => <Employees employees={this.props.employees} actions={this.props.actions} {...routeProps} />} />
+        </main>
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  return {
+    employees: state.employeeAppState
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    actions: bindActionCreators(EmployeeActions, dispatch)
+  }
+}
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App));

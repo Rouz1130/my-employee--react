@@ -11,27 +11,27 @@ const TopEmployees = props => {
     }
 
     const selectEmployee = (employeeId) => {
-        props.history.push(`employees/${employeeId}`);
+        props.history.push(`heroes/${employeeId}`);
     }
 
     const TopEmployees = props.employees.filter((employee) => {
         return employee.id % 2 === 0;
-    }).map((TopEmployee) => {
+    }).map((topEmployee) => {
         return (
-            <div className='panel panel-default col-sm-2' key={TopEmployee.id} onClick={() => selectEmployee(TopEmployee.id)}>
+            <div className='panel panel-default col-sm-2' key={topEmployee.id} onClick={() => selectEmployee(topEmployee.id)}>
                 <div className='panel-body'>
-                    {TopEmployee.name}
+                    {topEmployee.name}
                 </div>
             </div>
         )
     })
 
-    const TopEmployeesPanel = TopEmployee
+    const TopEmployeesPanel = TopEmployees
 
     return (
         <div>
             <div className='page-header text-center'>
-                <h3>Top Employees this Month</h3>
+                <h3>My Top Employees</h3>
                 <div className='row text-center'>
                 {TopEmployees}
                 </div>

@@ -1,4 +1,4 @@
-import {CHANGE_NAME, GET_EMPLOYEES_SUCCESS} from '../constants/ActionTypes';
+import {CHANGE_NAME, GET_EMPLOYEES_SUCCESS, ADD_EMPLOYEE} from '../constants/ActionTypes';
 
 export default function employeeAppState(state = [], action) {
 
@@ -6,6 +6,10 @@ export default function employeeAppState(state = [], action) {
 
     case GET_EMPLOYEES_SUCCESS:
       return [...action.employees];
+
+      case ADD_EMPLOYEE:
+          return [...state, { id: action.id, name: action.name }];
+
 
     case CHANGE_NAME:
       return state.map((employee) => {
