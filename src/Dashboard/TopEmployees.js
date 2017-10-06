@@ -6,12 +6,12 @@ import './TopEmployees.css';
 
 const TopEmployees = props => {
 
-    if(!props.employees || props.employees.length === 0){
+    if(props.showLoader){
         return <Loader />
     }
 
     const selectEmployee = (employeeId) => {
-        props.history.push(`heroes/${employeeId}`);
+        props.history.push(`employees/${employeeId}`);
     }
 
     const TopEmployees = props.employees.filter((employee) => {
@@ -31,7 +31,7 @@ const TopEmployees = props => {
     return (
         <div>
             <div className='page-header text-center'>
-                <h3>My Top Employees</h3>
+                <h3>My Employee List</h3>
                 <div className='row text-center'>
                 {TopEmployees}
                 </div>

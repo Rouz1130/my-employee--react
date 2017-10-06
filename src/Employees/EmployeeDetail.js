@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Loader from '../common/Loader';
 
+
 class EmployeeDetail extends Component {
 
     constructor(props) {
@@ -16,7 +17,7 @@ class EmployeeDetail extends Component {
     }
 
     handleChange = (e) => {
-        let newName = e.target.value.trim();
+        let newName = e.target.value;
         const updatedEmployeeDetails = {...this.state.employee, name: newName}
         this.setState({
             employee: updatedEmployeeDetails
@@ -41,10 +42,10 @@ class EmployeeDetail extends Component {
     }
 
 
-    render() {
-        if(!this.props.employees || this.props.employees.length === 0){
-            return <Loader />
-        }
+      render() {
+          if (this.props.showLoader) {
+              return <Loader />
+          }
 
         return (
             <div>

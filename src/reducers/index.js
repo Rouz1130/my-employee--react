@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import employeeAppState from './employees';
+import loaderState from './loaderState';
 
 const rootReducer = combineReducers ({
-  employeeAppState
+  employeeAppState,
+  loaderState
 });
 
 export default rootReducer;

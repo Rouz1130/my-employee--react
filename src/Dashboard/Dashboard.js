@@ -4,10 +4,12 @@ import { Route } from 'react-router-dom';
 
 import TopEmployees from './TopEmployees';
 
+
+
 const Dashboard = props => {
     return (
         <div>
-            <Route path={`${props.match.path}`} exact render={(routeProps) => <TopEmployees employees={props.employees} {...routeProps} />} />
+                    <Route path={`${props.match.path}`} exact render={(routeProps) => <TopEmployees employees={props.employees} showLoader={props.showLoader} {...routeProps} />} />
         </div>
     );
 };
